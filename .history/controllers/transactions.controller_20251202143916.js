@@ -15,7 +15,7 @@ export const getAllOrder = async (req, res) => {
 };
 
 export const postCreateOrder = async (req, res) => {
-  const { customer_name, order_type, order_date, items } = req.body;
+  const { customer_name, order_type, order_date } = req.body;
   try {
     const newOrder = await prisma.order_list.create({
       data: {
@@ -23,14 +23,9 @@ export const postCreateOrder = async (req, res) => {
         order_type,
         order_date,
         orderDetails: {
-          create: items.map((item) => ({
-            coffee_id: item.coffee_id,
-            quantity: item.quantity,
-            price: item.price,
-          })),
+          create:
         },
       },
-      include: { orderDetails: { include: { coffee_Id: true } } },
     });
     res
       .status(201)

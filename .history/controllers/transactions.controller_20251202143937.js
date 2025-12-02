@@ -25,12 +25,9 @@ export const postCreateOrder = async (req, res) => {
         orderDetails: {
           create: items.map((item) => ({
             coffee_id: item.coffee_id,
-            quantity: item.quantity,
-            price: item.price,
-          })),
+          }),
         },
       },
-      include: { orderDetails: { include: { coffee_Id: true } } },
     });
     res
       .status(201)

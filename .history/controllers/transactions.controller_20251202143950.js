@@ -30,7 +30,6 @@ export const postCreateOrder = async (req, res) => {
           })),
         },
       },
-      include: { orderDetails: { include: { coffee_Id: true } } },
     });
     res
       .status(201)
