@@ -1,0 +1,15 @@
+import express from "express";
+import {
+  deleteCoffeeMenu,
+  getAllCoffeeMenu,
+  postNewCoffeeMenu,
+  putUpdateCoffeeMenu,
+} from "../controllers/menu.controller.js";
+
+const router = express.Router();
+
+router.get("/coffee", getAllCoffeeMenu);
+router.post("/m/coffee", postNewCoffeeMenu);
+router.put("/menu/coffee/:id", putUpdateCoffeeMenu);
+router.delete("/menu/coffee/:id", deleteCoffeeMenu);
+export default router;

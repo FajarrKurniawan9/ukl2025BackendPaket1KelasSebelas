@@ -1,0 +1,67 @@
+import { Prisma } from "@prisma/client";
+const prisma = new Prisma.PrismaClient();
+
+export const getAllOrder = async (req, res) => {
+  try {
+    const transactions = await prisma.transactions.findMany({});
+    res.status(200).json({
+      message: "Transactions retrieved successfully",
+      total: transactions.length,
+      data: transactions,
+    });
+  } catch (error) {
+    error.message;
+  }
+};
+
+export const postCreateOrder = async (req, res) => {
+  const { constumer_name, order_type } = req.body;
+  try {
+    const newOrder = await prisma.transactions.create({
+      data: {
+        id: id,
+        constumer_name,
+        order_type,
+        constumer_name,
+      },
+    });
+    res
+      .status(201)
+      .json({ message: "New Order created successfully", data: newOrder });
+  } catch (error) {
+    error.message;
+  }
+};
+
+export const deleteOrders = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const existingTransaction = await prisma.transactions.findUnique({
+      where: { id: parseInt(id) },
+    });
+    if (!existingTransaction) {
+      return res.status(404).json({ message: "Transaction not found" });
+    }
+    const deletedTransaction = await prisma.transactions.delete({
+      where: { id: parseInt(id) },
+    });
+    res.status(200).json({
+      message: "Transaction deleted successfully",
+      data: deletedTransaction,
+    });
+  } catch (error) {
+    error.message;
+  }
+};
+
+export const putUpdateOrders = async (req, res) => {
+  const { id } = req.params;
+  const { constumer_name, order_type } = req.body;
+  try {
+    const existingTransaction = await prisma.transactions.findUnique({
+      where: { id: parseInt(id) },
+    });
+  } catch (error) {
+    error.message;
+  }
+};
