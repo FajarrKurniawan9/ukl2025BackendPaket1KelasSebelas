@@ -10,7 +10,9 @@ export const getAllOrder = async (req, res) => {
       data: transactions,
     });
   } catch (error) {
+    
     res.status(500).json({ message: error.message });
+
   }
 };
 
