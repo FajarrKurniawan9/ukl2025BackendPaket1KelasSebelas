@@ -4,7 +4,7 @@ import {
   getAllCoffeeMenu,
   postNewCoffeeMenu,
   putUpdateCoffeeMenu,
-} from "../controllers/menu.controller.js";
+} from "../controllers/coffee.controller.jsjs";
 import {
   isAdmin,
   isCashierOrAdminOrUser,
