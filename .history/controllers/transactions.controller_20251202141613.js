@@ -55,7 +55,7 @@ export const deleteOrders = async (req, res) => {
 
 export const putUpdateOrders = async (req, res) => {
   const { id } = req.params;
-  const { customer_name, order_type } = req.body;
+  const { customer_name, order_type, } = req.body;
   try {
     const existingTransaction = await prisma.order_list.findUnique({
       where: { id: parseInt(id) },

@@ -68,7 +68,7 @@ export const deleteCoffeeMenu = async (req, res) => {
   if (!coffeeItems) {
     return res.status(404).json({ message: "Coffee menu item not found" });
   }
-  const deletedItems = await prisma.coffee.delete({
+  const deletedItems = await prisma.coffe.delete({
     where: { id: parseInt(id) },
   });
   try {
@@ -83,7 +83,7 @@ export const deleteCoffeeMenu = async (req, res) => {
 
 export const getAllCoffeeMenu = async (req, res) => {
   try {
-    const coffeeMenu = await prisma.coffee.findMany({
+    const coffeeMenu = await prisma.menu.findMany({
       orderBy: { id: "asc" },
     });
 

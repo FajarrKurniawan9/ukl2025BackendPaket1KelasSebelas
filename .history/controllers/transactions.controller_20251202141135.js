@@ -55,7 +55,7 @@ export const deleteOrders = async (req, res) => {
 
 export const putUpdateOrders = async (req, res) => {
   const { id } = req.params;
-  const { customer_name, order_type } = req.body;
+  const { constmer_name, order_type } = req.body;
   try {
     const existingTransaction = await prisma.order_list.findUnique({
       where: { id: parseInt(id) },
@@ -66,7 +66,7 @@ export const putUpdateOrders = async (req, res) => {
     const updatedTransaction = await prisma.order_list.update({
       where: { id: parseInt(id) },
       data: {
-        customer_name: customer_name || existingTransaction.customer_name,
+        constumer_name: constumer_name || existingTransaction.constumer_name,
         order_type: order_type || existingTransaction.order_type,
       },
     });

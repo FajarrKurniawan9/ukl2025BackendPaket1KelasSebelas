@@ -14,6 +14,6 @@ import { authorize } from "../controllers/auth.controller.js";
 const router = express.Router();
 router.get("/orders", authorize, isCashierOrAdminOrUser, getAllOrder);
 router.post("/orderCreate", authorize, isCashierOrAdminOrUser, postCreateOrder);
-router.delete("/delete/:id", authorize, isCashierOrAdminOrUser, deleteOrders);
+router.delete("/delete/:id", authorize, is, deleteOrders);
 router.put("/update/:id", authorize, isCashierOrAdminOrUser, putUpdateOrders);
 export default router;

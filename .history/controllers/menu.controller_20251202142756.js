@@ -39,7 +39,7 @@ export const putUpdateCoffeeMenu = async (req, res) => {
       .status(400)
       .json({ message: "Quantity must be greater than zero" });
   }
-  const updatedCoffeeMenu = await prisma.coffee.update({
+  const updatedCoffeeMenu = await prisma.cpf.update({
     where: { id: parseInt(id) },
     data: {
       id: Number(id),
@@ -62,13 +62,13 @@ export const putUpdateCoffeeMenu = async (req, res) => {
 
 export const deleteCoffeeMenu = async (req, res) => {
   const { id } = req.params;
-  const coffeeItems = await prisma.coffee.findUnique({
+  const coffeeItems = await prisma.menu.findUnique({
     where: { id: parseInt(id) },
   });
   if (!coffeeItems) {
     return res.status(404).json({ message: "Coffee menu item not found" });
   }
-  const deletedItems = await prisma.coffee.delete({
+  const deletedItems = await prisma.menu.delete({
     where: { id: parseInt(id) },
   });
   try {
@@ -83,7 +83,7 @@ export const deleteCoffeeMenu = async (req, res) => {
 
 export const getAllCoffeeMenu = async (req, res) => {
   try {
-    const coffeeMenu = await prisma.coffee.findMany({
+    const coffeeMenu = await prisma.menu.findMany({
       orderBy: { id: "asc" },
     });
 

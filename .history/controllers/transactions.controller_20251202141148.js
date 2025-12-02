@@ -66,7 +66,7 @@ export const putUpdateOrders = async (req, res) => {
     const updatedTransaction = await prisma.order_list.update({
       where: { id: parseInt(id) },
       data: {
-        customer_name: customer_name || existingTransaction.customer_name,
+        customer_name: coumer_name || existingTransaction.constumer_name,
         order_type: order_type || existingTransaction.order_type,
       },
     });

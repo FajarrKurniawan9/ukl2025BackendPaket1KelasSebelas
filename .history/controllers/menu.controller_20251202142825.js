@@ -83,7 +83,7 @@ export const deleteCoffeeMenu = async (req, res) => {
 
 export const getAllCoffeeMenu = async (req, res) => {
   try {
-    const coffeeMenu = await prisma.coffee.findMany({
+    const coffeeMenu = await prisma.coffe.findMany({
       orderBy: { id: "asc" },
     });
 

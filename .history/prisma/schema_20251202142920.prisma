@@ -54,6 +54,8 @@ model users {
   updatedAt DateTime @updatedAt
 }
 
+
+
 enum Role {
   admin
   cashier
