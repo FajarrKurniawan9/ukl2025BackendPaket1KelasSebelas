@@ -65,12 +65,10 @@ export const postCreateOrder = async (req, res) => {
           message: `Insufficient stock for ${coffee.name}. Available: ${coffee.quantity}, Requested: ${item.quantity}`,
         });
       }
-      const totalPrice = coffee.price * item.quantity;
-
       itemsWithPrice.push({
         coffee_id: item.coffee_id,
         quantity: item.quantity,
-        price: totalPrice,
+        price: totalPrice = coffee.price * item.quantity,
         user_id: userId,
       });
     }

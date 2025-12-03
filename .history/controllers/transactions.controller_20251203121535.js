@@ -66,11 +66,11 @@ export const postCreateOrder = async (req, res) => {
         });
       }
       const totalPrice = coffee.price * item.quantity;
-
       itemsWithPrice.push({
         coffee_id: item.coffee_id,
         quantity: item.quantity,
         price: totalPrice,
+        
         user_id: userId,
       });
     }

@@ -66,7 +66,6 @@ export const postCreateOrder = async (req, res) => {
         });
       }
       const totalPrice = coffee.price * item.quantity;
-
       itemsWithPrice.push({
         coffee_id: item.coffee_id,
         quantity: item.quantity,
@@ -86,7 +85,7 @@ export const postCreateOrder = async (req, res) => {
           create: itemsWithPrice.map((item) => ({
             coffee_id: item.coffee_id,
             quantity: item.quantity,
-            price: item.price,
+            price: item.tot,
             user_id: item.user_id,
           })),
         },
