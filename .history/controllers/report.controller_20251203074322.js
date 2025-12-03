@@ -2,7 +2,6 @@ import { PrismaClient } from "@prisma/client";
 import jwt from "jsonwebtoken";
 import md5 from "md5";
 const prisma = new PrismaClient();
-const SECRET_KEY = process.env.JWT_SECRET || "ukl1josjis";
 
 // Laporan Summary Penjualan
 export const getCoffeeSalesReport = async (req, res) => {
@@ -166,35 +165,15 @@ export const getCustomerOrders = async (req, res) => {
       },
     });
 
-    const verifyToken = async (req, res, next) => {
-      try {
-        const authHeader = req.headers.authorization;
-        if (!authHeader) {
-          return res
-            .status(401)
-            .json({ message: "Authorization header missing" });
-        }
-        const token = authHeader.split(" ")[1];
-        const decoded = jwt.verify(token, SECRET_KEY);
-        if (!decoded) {
-          return res.status(401).json({ message: "Invalid token" });
-        }
-        req.user = decoded;
-        next();
-      } catch (error) {
-        res.status(500).json({ message: error.message });
-      }
-    };
 
-    const onDuty = await prisma.users.findFirst({
-      where: {
-        password: {
-          contains: verifyToken,
-        },
-      },
-    });
 
-    const Duty = onDuty.name;
+    // const duty = await prisma.users.findMany({
+    //   where: {
+    //     name: {
+    //         contains: 
+    //     }
+    //   },
+    // });
 
     const ordersWithTotal = orders.map((order) => {
       const total = order.orderDetails.reduce((sum, detail) => {
@@ -210,7 +189,6 @@ export const getCustomerOrders = async (req, res) => {
     res.status(200).json({
       message: "Customer orders retrieved successfully",
       customer: customer_name,
-      on_duty: Duty,
       total_orders: orders.length,
       data: ordersWithTotal,
     });

@@ -37,8 +37,8 @@ export const postCreateOrder = async (req, res) => {
       message: "customer_name, order_type, order_date, and items are required",
     });
   }
+  // const itemsWithPrice = [];
   try {
-    const itemsWithPrice = [];
     // Check if all coffee items exist and have enough stock
     for (const item of items) {
       const coffee = await prisma.coffee.findUnique({

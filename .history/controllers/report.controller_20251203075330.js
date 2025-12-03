@@ -194,8 +194,6 @@ export const getCustomerOrders = async (req, res) => {
       },
     });
 
-    const Duty = onDuty.name;
-
     const ordersWithTotal = orders.map((order) => {
       const total = order.orderDetails.reduce((sum, detail) => {
         return sum + detail.price * detail.quantity;
@@ -210,7 +208,6 @@ export const getCustomerOrders = async (req, res) => {
     res.status(200).json({
       message: "Customer orders retrieved successfully",
       customer: customer_name,
-      on_duty: Duty,
       total_orders: orders.length,
       data: ordersWithTotal,
     });

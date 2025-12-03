@@ -210,7 +210,6 @@ export const getCustomerOrders = async (req, res) => {
     res.status(200).json({
       message: "Customer orders retrieved successfully",
       customer: customer_name,
-      on_duty: Duty,
       total_orders: orders.length,
       data: ordersWithTotal,
     });
