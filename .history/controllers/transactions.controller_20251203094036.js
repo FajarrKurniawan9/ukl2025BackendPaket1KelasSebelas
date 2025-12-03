@@ -24,16 +24,7 @@ export const getAllOrder = async (req, res) => {
 
 export const postCreateOrder = async (req, res) => {
   const { customer_name, order_type, order_date, items } = req.body;
-  // Get user from token (set by authorize middleware)
-  const userId = req.user.id;
-  const userRole = req.user.role;
 
-  // Validation: Only cashier can create orders
-  if (userRole !== "cashier") {
-    return res.status(403).json({
-      message: "Access denied. Only cashiers can create orders.",
-    });
-  }
   // Validation
   if (
     !customer_name ||
@@ -69,7 +60,6 @@ export const postCreateOrder = async (req, res) => {
         coffee_id: item.coffee_id,
         quantity: item.quantity,
         price: coffee.price,
-        user_id: userId,
       });
     }
 
@@ -85,7 +75,7 @@ export const postCreateOrder = async (req, res) => {
             coffee_id: item.coffee_id,
             quantity: item.quantity,
             price: item.price,
-            user_id: item.user_id,
+            us
           })),
         },
       },
@@ -93,13 +83,6 @@ export const postCreateOrder = async (req, res) => {
         orderDetails: {
           include: {
             coffee_Id: true,
-            user_Id: {
-              select: {
-                id: true,
-                name: true,
-                role: true,
-              },
-            },
           },
         },
       },

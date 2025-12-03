@@ -41,8 +41,8 @@ export const postNewCoffeeMenu = async (req, res) => {
     }
 
     // Handle other errors
-    res.status(500).json({
-      message: error.message,
+    res.status(500).json({ 
+      message: error.message 
     });
   }
 };

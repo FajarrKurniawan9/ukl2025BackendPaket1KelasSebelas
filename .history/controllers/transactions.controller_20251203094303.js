@@ -98,8 +98,7 @@ export const postCreateOrder = async (req, res) => {
                 id: true,
                 name: true,
                 role: true,
-              },
-            },
+              },}
           },
         },
       },

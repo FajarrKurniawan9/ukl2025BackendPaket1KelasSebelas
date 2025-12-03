@@ -2,6 +2,10 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
+
 export const postNewCoffeeMenu = async (req, res) => {
   const { name, price, quantity, size } = req.body;
 
@@ -123,6 +127,43 @@ export const deleteCoffeeMenu = async (req, res) => {
       where: { id: parseInt(id) },
     });
 
+    res.status(200).json({
+      message: "Coffee menu item deleted successfully",
+      data: deletedItems,
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+export const getAllCoffeeMenu = async (req, res) => {
+  try {
+    const coffeeMenu = await prisma.coffee.findMany({
+      orderBy: { id: "asc" },
+    });
+
+    res.status(200).json({
+      message: "Coffee menu retrieved successfully",
+      total: coffeeMenu.length,
+      data: coffeeMenu,
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+export const deleteCoffeeMenu = async (req, res) => {
+  const { id } = req.params;
+  const coffeeItems = await prisma.coffee.findUnique({
+    where: { id: parseInt(id) },
+  });
+  if (!coffeeItems) {
+    return res.status(404).json({ message: "Coffee menu item not found" });
+  }
+  const deletedItems = await prisma.coffee.delete({
+    where: { id: parseInt(id) },
+  });
+  try {
     res.status(200).json({
       message: "Coffee menu item deleted successfully",
       data: deletedItems,

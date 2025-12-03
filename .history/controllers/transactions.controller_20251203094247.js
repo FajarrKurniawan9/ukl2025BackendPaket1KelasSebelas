@@ -94,12 +94,6 @@ export const postCreateOrder = async (req, res) => {
           include: {
             coffee_Id: true,
             user_Id: {
-              select: {
-                id: true,
-                name: true,
-                role: true,
-              },
-            },
           },
         },
       },

@@ -99,7 +99,6 @@ export const postCreateOrder = async (req, res) => {
                 name: true,
                 role: true,
               },
-            },
           },
         },
       },
