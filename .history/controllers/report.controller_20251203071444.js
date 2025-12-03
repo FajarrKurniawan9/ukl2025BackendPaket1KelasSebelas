@@ -64,7 +64,7 @@ export const getTransactionsByPeriod = async (req, res) => {
 
   if (!start_date || !end_date) {
     return res.status(400).json({
-      message: "start_date and end_date body parameters are required",
+      message: "start_date and end_date query parameters are required",
     });
   }
 

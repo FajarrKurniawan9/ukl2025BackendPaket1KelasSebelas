@@ -15,7 +15,7 @@ app.use("/auth", authRoute);
 app.use("/menu", menuRoute);
 app.use("/transactions", transactionsRoute);
 app.use("/users", userRoute);
-app.use("/reports", reportRoute);
+app
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);

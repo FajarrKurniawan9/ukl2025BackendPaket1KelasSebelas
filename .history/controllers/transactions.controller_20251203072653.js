@@ -58,9 +58,9 @@ export const postCreateOrder = async (req, res) => {
       }
     }
 
-    const calculateTotalPrice = async () => {
+    const calculateTotalPrice = async (coffee_id, quantity) => {
       const items = await prisma.coffee.findUnique({
-        where: { id: items.coffee_id },
+        where: { id: coffee_id },
       });
       return coffee.price * quantity;
     };

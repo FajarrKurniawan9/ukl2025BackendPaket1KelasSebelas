@@ -4,7 +4,7 @@ import menuRoute from "./routes/coffee.route.js";
 import transactionsRoute from "./routes/transactions.route.js";
 import authRoute from "./routes/auth.route.js";
 import userRoute from "./routes/user.route.js";
-import reportRoute from "./routes/report.route.js";
+im[ort]
 dotenv.config();
 
 const app = express();
@@ -15,7 +15,7 @@ app.use("/auth", authRoute);
 app.use("/menu", menuRoute);
 app.use("/transactions", transactionsRoute);
 app.use("/users", userRoute);
-app.use("/reports", reportRoute);
+
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);

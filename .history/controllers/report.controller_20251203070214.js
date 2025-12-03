@@ -60,11 +60,11 @@ export const getCoffeeSalesReport = async (req, res) => {
 
 // Laporan Transaksi Per Periode
 export const getTransactionsByPeriod = async (req, res) => {
-  const { start_date, end_date } = req.body;
+  const { start_date, end_date } = req.query;
 
   if (!start_date || !end_date) {
     return res.status(400).json({
-      message: "start_date and end_date body parameters are required",
+      message: "start_date and end_date query parameters are required",
     });
   }
 
