@@ -9,7 +9,7 @@
     "dev": "nodemon server.js",
     "seed": "node prisma/seed.js"
   },
-  "prisma": {},
+  // 
   "keywords": [],
   "author": "",
   "license": "ISC",

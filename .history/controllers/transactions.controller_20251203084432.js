@@ -72,9 +72,7 @@ export const postCreateOrder = async (req, res) => {
 
         orderDetails: {
           create: itemsWithPrice.map((item) => ({
-            coffee_id: item.coffee_id,
-            quantity: item.quantity,
-            price: item.price,
+            c
           })),
         },
       },

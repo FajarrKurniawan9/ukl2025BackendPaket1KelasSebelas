@@ -20,7 +20,7 @@ model order_detail {
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
   order_Id  order_list @relation(fields: [order_id], references: [id])
-  coffee_Id coffee    @relation(fields: [coffee_id], references: [id])
+  coffee_Id coffee?    @relation(fields: [coffee_id], references: [id])
   user_Id   users      @relation(fields: [user_id], references: [id])
 }
 
