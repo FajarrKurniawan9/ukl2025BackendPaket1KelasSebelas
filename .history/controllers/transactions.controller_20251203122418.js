@@ -77,7 +77,7 @@ export const postCreateOrder = async (req, res) => {
       itemsWithPrice.push({
         coffee_id: item.coffee_id,
         quantity: item.quantity,
-        price: coffee.price, //Simpan harga per unit
+        price: coffee.price, // ✅ Simpan harga per unit
         user_id: userId,
       });
     }

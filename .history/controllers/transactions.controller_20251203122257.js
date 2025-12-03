@@ -72,12 +72,12 @@ export const postCreateOrder = async (req, res) => {
 
       // Hitung subtotal per item
       const subtotal = coffee.price * item.quantity;
-      totalPrice += subtotal; //Tambahkan ke total
+      totalPrice += subtotal; // ✅ Tambahkan ke total
 
       itemsWithPrice.push({
         coffee_id: item.coffee_id,
         quantity: item.quantity,
-        price: coffee.price, //Simpan harga per unit
+        price: coffee.price, // ✅ Simpan harga per unit
         user_id: userId,
       });
     }
@@ -141,7 +141,7 @@ export const postCreateOrder = async (req, res) => {
           subtotal: detail.price * detail.quantity,
           served_by: detail.user_Id.name,
         })),
-        total_price: totalPrice,
+        total_price: totalPrice, // ✅ Total yang harus dibayar
         created_at: newOrder.createdAt,
       },
     });

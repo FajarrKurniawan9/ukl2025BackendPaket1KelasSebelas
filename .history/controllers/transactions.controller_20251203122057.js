@@ -34,7 +34,6 @@ export const postCreateOrder = async (req, res) => {
       message: "Access denied. Only cashiers can create orders.",
     });
   }
-
   // Validation
   if (
     !customer_name ||
@@ -47,11 +46,8 @@ export const postCreateOrder = async (req, res) => {
       message: "customer_name, order_type, order_date, and items are required",
     });
   }
-
   try {
     const itemsWithPrice = [];
-    let totalPrice = 0; // ✅ Inisialisasi total price
-
     // Check if all coffee items exist and have enough stock
     for (const item of items) {
       const coffee = await prisma.coffee.findUnique({
@@ -69,15 +65,12 @@ export const postCreateOrder = async (req, res) => {
           message: `Insufficient stock for ${coffee.name}. Available: ${coffee.quantity}, Requested: ${item.quantity}`,
         });
       }
-
-      // Hitung subtotal per item
-      const subtotal = coffee.price * item.quantity;
-      totalPrice += subtotal; //Tambahkan ke total
+      const totalPrice = coffee.price * item.quantity;
 
       itemsWithPrice.push({
         coffee_id: item.coffee_id,
         quantity: item.quantity,
-        price: coffee.price, //Simpan harga per unit
+        price: coffee.price,
         user_id: userId,
       });
     }
@@ -126,24 +119,9 @@ export const postCreateOrder = async (req, res) => {
       });
     }
 
-    // ✅ Format response dengan total price
     res.status(201).json({
       message: "New Order created successfully",
-      data: {
-        order_id: newOrder.id,
-        customer_name: newOrder.customer_name,
-        order_type: newOrder.order_type,
-        order_date: newOrder.order_date,
-        items: newOrder.orderDetails.map((detail) => ({
-          coffee_name: detail.coffee_Id.name,
-          quantity: detail.quantity,
-          price_per_unit: detail.price,
-          subtotal: detail.price * detail.quantity,
-          served_by: detail.user_Id.name,
-        })),
-        total_price: totalPrice,
-        created_at: newOrder.createdAt,
-      },
+      data: newOrder,
     });
   } catch (error) {
     res.status(500).json({ message: error.message });

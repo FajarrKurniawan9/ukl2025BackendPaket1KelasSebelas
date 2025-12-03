@@ -72,12 +72,12 @@ export const postCreateOrder = async (req, res) => {
 
       // Hitung subtotal per item
       const subtotal = coffee.price * item.quantity;
-      totalPrice += subtotal; //Tambahkan ke total
+      totalPrice += subtotal; // ✅ Tambahkan ke total
 
       itemsWithPrice.push({
         coffee_id: item.coffee_id,
         quantity: item.quantity,
-        price: coffee.price, //Simpan harga per unit
+        price: coffee.price, // ✅ Simpan harga per unit
         user_id: userId,
       });
     }
