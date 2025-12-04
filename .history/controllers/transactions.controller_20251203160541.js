@@ -50,7 +50,7 @@ export const postCreateOrder = async (req, res) => {
 
   try {
     const itemsWithPrice = [];
-    let totalPrice = 0; // Inisialisasi total price
+    let totalPrice = 0; // ✅ ]Inisialisasi total price
 
     // Check if all coffee items exist and have enough stock
     for (const item of items) {
@@ -126,7 +126,7 @@ export const postCreateOrder = async (req, res) => {
       });
     }
 
-    // Format response dengan total price
+    // ✅ Format response dengan total price
     res.status(201).json({
       message: "New Order created successfully",
       data: {
